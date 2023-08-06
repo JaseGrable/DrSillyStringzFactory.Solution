@@ -13,7 +13,7 @@ namespace Factory.Controllers
 
         public EngineersController(FactoryContext db)
         {
-            _db = double;
+            _db = db;
         }
 
         public ActionResult Index()
