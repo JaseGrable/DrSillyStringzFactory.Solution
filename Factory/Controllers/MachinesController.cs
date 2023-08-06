@@ -80,7 +80,7 @@ namespace Factory.Controllers
                 return RedirectToAction("Index");
             }
 
-            public ActionResultDelete(int id)
+            public ActionResult Delete(int id)
             {
                 Machine thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId = id);
                 return View(thisMachine);
