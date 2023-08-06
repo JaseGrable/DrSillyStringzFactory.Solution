@@ -14,14 +14,17 @@ namespace Factory
 
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<FactoryContext>
-                 (dbContextOptions => dbContextOptions.UseMySql
-                 (builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"])
-                 )
-                 );
+            builder.Services.AddDbContext<FactoryContext>(
+                              dbContextOptions => dbContextOptions
+                                .UseMySql(
+                                  builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
+                                )
+                              )
+                            );
 
             WebApplication app = builder.Build();
 
+            app.UseDeveloperExceptionPage();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -29,8 +32,7 @@ namespace Factory
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}"
-              );
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }
