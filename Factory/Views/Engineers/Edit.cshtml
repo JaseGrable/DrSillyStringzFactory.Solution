@@ -1,20 +1,34 @@
 @{
-  Layout = "_Layout";
+    Layout = "_Layout";
 }
 
 @model Factory.Models.Engineer
-
-<h2>Edit Engineers:</h2>
-
-<p>Edit this engineer: @Html.DisplayFor(model => model.EngineerName)</p>
+<div class="container">
+    <h1>Edit Engineer</h1>
+    <h4>Editing: @Html.DisplayFor(model => model.EngineerName)</h4>
+</div>
+<hr />
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.EngineerId)
-  @Html.LabelFor(model => model.EngineerDetails)
-  @Html.EditorFor(model => model.EngineerDetails)
-  <input type="submit" value="save" />
-}
+    <div class="form-container">
+        @Html.HiddenFor(model => model.EngineerId)
+        <div>
+            @Html.LabelFor(model => model.EngineerName)
+            @Html.EditorFor(model => model.EngineerName)
+            <p>@Html.ValidationMessageFor(model => model.EngineerName, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+            @Html.LabelFor(model => model.JobTitle)
+            @Html.TextBoxFor(model => model.JobTitle)
+            <p>@Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+        </div>
+    </div>
+    <div class="center">
+        <input type="submit" value="Save" class="button"/>
+    </div>
+    <hr />
+    <div class="link-container">
+        <p>@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</p>
+        <p>@Html.ActionLink("Back to All Engineers", "Index")</p>
+    </div>
 
-<p>@Html.ActionLink("Engineer list", "Index")</p>
-<p>@Html.ActionLink("Add a machine to a Engineer", "AddMachine", new { id = Model.EngineerId })</p>
+}

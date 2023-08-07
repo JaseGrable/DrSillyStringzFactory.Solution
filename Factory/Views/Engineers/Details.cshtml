@@ -5,31 +5,32 @@
 @using Factory.Models
 @model Factory.Models.Engineer
 
-<h2>Engineer Details</h2>
-
-<p>@Html.DisplayNameFor(model => model.EngineerName): @Html.DisplayFor(model => model.EngineerName)</p>  
-<p>@Html.DisplayNameFor(model => model.EngineerDetails): @Html.DisplayFor(model => model.EngineerDetails)</p>
-
+<div class="container">
+    <h1>Engineer Details</h1>
+    <h3>@Html.DisplayNameFor(model => model.EngineerName) @Html.DisplayFor(model => model.EngineerName)</h3>
+    <h3>@Html.DisplayNameFor(model => model.JobTitle) @Html.DisplayFor(model => model.JobTitle)</h3>
+</div>
+<hr />
+<div class="container">
 @if(@Model.JoinEntities.Count == 0)
 {
-  <p>This engineer hasn't been assigned to any machines yet.</p>
+  <p>This engineer is not allowed to operate any machines.</p>
 }
 else
 {
-  <p>This engineer is licensed to service the following machine or machines:</p>
+  <h4>This engineer is allowed to operate the following machines:</h4>
   <ul>
   @foreach(EngineerMachine join in Model.JoinEntities)
   {
-    <li>Machine: @join.Machine.MachineName</li>
-    @using (Html.BeginForm("DeleteJoin", "Engineers"))
-    {
-      @Html.Hidden("joinId", @join.EngineerMachineId)
-      <input type="submit" value="Delete" />
-    }
+    <li>@join.Machine.MachineName</li>
   }
   </ul>
 }
-
-<p>@Html.ActionLink("Engineers", "Index")</p>
-<p>@Html.ActionLink("Add a Machine to this Engineer", "AddMachine", new {id = Model.EngineerId})</p>
-<p>@Html.ActionLink("Delete an Engineer", "Delete", new {id = Model.EngineerId})</p>
+<hr />
+</div>
+<div class="link-container">
+    <p>@Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EngineerId })</p>
+    <p>@Html.ActionLink("Add Engineer to Machine", "AddMachine", new { id = Model.EngineerId })</p>
+    <p>@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId})</p>
+    <p>@Html.ActionLink("Back to All Engineers", "Index")</p>
+</div>

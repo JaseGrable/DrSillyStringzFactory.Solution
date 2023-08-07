@@ -1,24 +1,31 @@
 @{
-  Layout="_Layout";
+    Layout = "_Layout";
 }
 
 @model Factory.Models.Machine
 
-<h2>Add a Machine</h2>
-
-<p>@Html.ValidationMessageFor(model => model.MachineName, "")</p>
-<p>@Html.ValidationMessageFor(model => model.MachineDescription, "")</p>
+<div class="container">
+  <h1>Add a New Machine</h1>
+</div>
+<hr />
 
 @using (Html.BeginForm())
-{
-  @Html.LabelFor(model => model.MachineName)
-  @Html.TextBoxFor(model => model.MachineName)
-  @Html.LabelFor(model => model.MachineDescription)
-  @Html.TextAreaFor(model => model.MachineDescription)
-
-  <input type="submit" value="Add new machine"/>
+{   <div class="form-container">
+        <div>
+            @Html.LabelFor(model => model.MachineName)
+            @Html.TextBoxFor(model => model.MachineName)
+            <p>@Html.ValidationMessageFor(model => model.MachineName, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+            @Html.LabelFor(model => model.ManufactureDate)
+            @Html.TextBoxFor(model => model.ManufactureDate, new {type="date"})
+            <p>@Html.ValidationMessageFor(model => model.ManufactureDate, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+        </div>
+    </div>
+    <div class="center">
+        <input type="submit" value="Add new machine" />
+    </div>
 }
-
-<p>@Html.ActionLink("Add a new Engineer", "Create", "Engineers")</p>
-<p>@Html.ActionLink("Add a new Machine", "Create")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<hr />
+<div class="link-container">
+    <p>@Html.ActionLink("Back to All Machines", "Index")</p>
+    <p>@Html.ActionLink("Return Home", "Index", "Home")</p>
+</div>

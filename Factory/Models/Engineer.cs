@@ -5,12 +5,15 @@ namespace Factory.Models
 {
     public class Engineer
     {
-        public int EngineerId { get; set; }
-        [Required(ErrorMessage = "You must enter the name of the Engineer.")]
-        public string EngineerName { get; set; }
 
-        [Required(ErrorMessage = "You cannot leave the Engineer's details blank.")]
-        public string EngineerDetails { get; set; }
+        public int EngineerId { get; set; }
+        [Display(Name = "Engineer Name: ")]
+        [Required(ErrorMessage = "The name field can't be blank.")]
+        public string EngineerName { get; set; }
+        [Display(Name = "Job Title: ")]
+        [Required(ErrorMessage = "The job title field can't be blank.")]
+        public string JobTitle { get; set; }
+        public int MachineId { get; set; }
         public List<EngineerMachine> JoinEntities { get; }
     }
 }
