@@ -2,22 +2,22 @@
     Layout = "_Layout";
 }
 
-@model Factory.Models.Machine
+@model Factory.Models.Engineer
 
 <div class="container">
-  <h1>Add Machine to Engineer</h1>
+    <h1>Add Engineer to a Machine</h1>
 </div>
 <hr />
 <div class="container">
-    <h4>Add @Html.DisplayFor(model => model.MachineName) to an engineer: </h4>
+    <h4>Add @Html.DisplayFor(model => model.EngineerName) to an engineer: </h4>
 </div>
 
 @using (Html.BeginForm())
 {<div class="form-container">
-    @Html.HiddenFor(model => model.MachineId)
+    @Html.HiddenFor(model => model.EngineerId)
     <div>
         @Html.Label("Select Engineer: ")
-        @Html.DropDownList("EngineerId", ViewBag.EngineerId as SelectList)
+        @Html.DropDownList("MachineId", ViewBag.MachineId as SelectList)
     </div>
 </div>
 <div class="center">
