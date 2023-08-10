@@ -5,18 +5,18 @@
 @model Factory.Models.Engineer
 
 <div class="container">
-    <h1>Add Engineer to a Machine</h1>
+  <h1>Add Engineer to Machine</h1>
 </div>
 <hr />
 <div class="container">
-    <h4>Add @Html.DisplayFor(model => model.EngineerName) to an engineer: </h4>
+    <h2>Add @Html.DisplayFor(model => model.EngineerName) to a machine: </h2>
 </div>
 
 @using (Html.BeginForm())
 {<div class="form-container">
     @Html.HiddenFor(model => model.EngineerId)
     <div>
-        @Html.Label("Select Engineer: ")
+        @Html.Label("Select Machine: ")
         @Html.DropDownList("MachineId", ViewBag.MachineId as SelectList)
     </div>
 </div>
@@ -26,6 +26,5 @@
 }
 <hr />
 <div class="link-container">
-    <p>@Html.ActionLink("Back to All Machines", "Index")</p>
-    <p>@Html.ActionLink("Return Home", "Index", "Home")</p>
+    <p>@Html.ActionLink("Back to All Engineers", "Index")</p>
 </div>
