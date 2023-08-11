@@ -6,7 +6,7 @@ using Factory.ViewModels;
 
 namespace Factory.Controllers
 {
-    public class AccountController : Controllers
+    public class AccountController : Controller
     {
         private readonly FactoryContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
